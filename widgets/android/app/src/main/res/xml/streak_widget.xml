@@ -1,0 +1,4 @@
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+  android:minWidth="150dp" android:minHeight="150dp" android:initialLayout="@layout/streak_widget"
+  android:updatePeriodMillis="1800000" android:resizeMode="horizontal|vertical"
+  android:configure="com.streakgarden.widget.ConfigureActivity" android:widgetCategory="home_screen" />

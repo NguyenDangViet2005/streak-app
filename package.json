@@ -1,0 +1,25 @@
+{
+  "name": "streak-garden",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal streak tracker — Express MVC, EJS, MongoDB and home screen widgets",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test --test-concurrency=1",
+    "demo": "node scripts/demo.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "mongoose": "^8.19.0"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^10.2.0",
+    "supertest": "^7.1.4"
+  }
+}

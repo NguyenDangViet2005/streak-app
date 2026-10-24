@@ -1,0 +1,10 @@
+services:
+  mongo:
+    image: mongo:8.0
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - streak_data:/data/db
+volumes:
+  streak_data:

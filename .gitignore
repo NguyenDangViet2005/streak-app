@@ -1,0 +1,6 @@
+node_modules/
+.env
+.data/
+widgets/android/.gradle/
+widgets/android/**/build/
+widgets/android/local.properties

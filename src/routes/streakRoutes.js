@@ -1,0 +1,12 @@
+import { Router } from 'express';
+import * as controller from '../controllers/streakController.js';
+const router = Router();
+router.get('/', controller.home);
+router.get('/api/streaks', controller.list);
+router.post('/api/streaks', controller.create);
+router.get('/api/streaks/:id', controller.read);
+router.put('/api/streaks/:id', controller.update);
+router.delete('/api/streaks/:id', controller.remove);
+router.get('/widget/:id', controller.widget);
+router.get('/manifest/:id.webmanifest', controller.manifest);
+export default router;
