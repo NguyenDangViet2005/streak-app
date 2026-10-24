@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: streak-app
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: APP_TIMEZONE
+        value: Asia/Ho_Chi_Minh
+      - key: MONGODB_URI
+        sync: false
+      - key: APP_URL
+        sync: false

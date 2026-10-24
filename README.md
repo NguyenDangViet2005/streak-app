@@ -2,9 +2,27 @@
 
 Web cá nhân lưu nhiều streak, dùng **Node.js + Express + EJS + MongoDB (Mongoose), mô hình MVC**. Giao diện nằm cùng source, không tách frontend/backend và không có đăng nhập.
 
-## Chạy web
+## Deploy lên Render
 
-Cần Node.js 22 trở lên và MongoDB. Mở terminal trong thư mục dự án:
+Với Web Service đã tạo, mở **Settings → Build & Deploy** và đặt:
+
+- **Build Command:** `npm ci --omit=dev`
+- **Start Command:** `npm start`
+- **Root Directory:** để trống nếu `package.json` nằm ở gốc repository.
+
+Build Command phải cài dependencies. Chỉ chạy `node` sẽ không cài Express và gây lỗi `ERR_MODULE_NOT_FOUND` lúc khởi động. Ứng dụng dùng EJS trực tiếp nên không cần bước biên dịch frontend.
+
+Trong **Environment** của Render, khai báo `MONGODB_URI` trỏ tới MongoDB có thể truy cập từ Render và `APP_URL` là URL HTTPS của service. Có thể thêm `APP_TIMEZONE=Asia/Ho_Chi_Minh`, `HOST=0.0.0.0`, `NODE_ENV=production`. Render tự cấp `PORT`, ứng dụng đọc biến này. `.env` trên máy cá nhân không được Git đẩy lên và không tự xuất hiện trên Render.
+
+File `.node-version` ghim Node 24.21.0; nếu service đang có biến `NODE_VERSION`, biến đó được ưu tiên hơn file, hãy đặt cùng phiên bản hoặc bỏ biến override. `package.json` cũng giới hạn phiên bản dưới Node 25 để tránh tự nhảy sang major mới.
+
+Sau khi đẩy thay đổi lên GitHub, chọn **Manual Deploy → Clear build cache & deploy**. Service hiện tại cần sửa Build Command trực tiếp trong dashboard; thêm `render.yaml` không tự thay đổi service chưa được quản lý bằng Blueprint.
+
+Nếu tạo bằng **New → Blueprint**, có thể dùng `render.yaml` kèm theo. Các biến `sync: false` cần nhập trong Render, không ghi connection string vào source.
+
+## Chạy trên máy cá nhân
+
+Cần Node.js 22 hoặc 24 và MongoDB (dự án ghim Node 24.21.0). Mở terminal trong thư mục dự án:
 
 ```powershell
 npm ci

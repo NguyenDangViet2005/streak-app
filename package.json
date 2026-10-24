@@ -4,7 +4,7 @@
   "private": true,
   "description": "Personal streak tracker — Express MVC, EJS, MongoDB and home screen widgets",
   "type": "module",
-  "engines": { "node": ">=22" },
+  "engines": { "node": ">=22 <25" },
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",

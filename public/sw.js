@@ -1,4 +1,4 @@
-const CACHE = 'streak-garden-static-v2';
+const CACHE = 'streak-garden-static-v3';
 const ASSETS = ['/css/style.css', '/js/app.js', '/js/widget.js', '/icons/icon-192.png', '/icons/icon-512.png', '/offline.html', '/fonts/Nunito-Variable.ttf'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS))); self.skipWaiting(); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('streak-garden-static-') && key !== CACHE).map(key => caches.delete(key))))); self.clients.claim(); });

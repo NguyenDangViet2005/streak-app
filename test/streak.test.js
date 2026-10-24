@@ -42,6 +42,25 @@ test('create past streak persists in real MongoDB', async () => {
   assert.equal((await Streak.findById(response.body.id)).startDate, '2024-01-01');
 });
 test('today starts at one day', async () => { const result = await create({ startDate: todayInZone() }); assert.equal(result.body.days, 1); });
+
+test('companion stages and next milestones advance at calendar-day boundaries', async () => {
+  const today = todayInZone('Asia/Ho_Chi_Minh');
+  const cases = [[1, 0, 7], [6, 0, 7], [7, 1, 30], [29, 1, 30], [30, 2, 100], [99, 2, 100], [100, 3, 365], [364, 3, 365], [365, 3, 730]];
+  const fixtures = [];
+  for (const [days, stage, goal] of cases) {
+    const startDate = new Date(Date.parse(`${today}T00:00:00Z`) - (days - 1) * 86400000).toISOString().slice(0, 10);
+    const { body } = await create({ title: `Mốc ${days}`, startDate }).expect(201);
+    fixtures.push({ id: body.id, days, stage, goal });
+  }
+  const response = await request(app).get('/').expect(200);
+  for (const { id, days, stage, goal } of fixtures) {
+    const card = response.text.match(new RegExp(`<article[^>]+data-id="${id}"[\\s\\S]*?</article>`))?.[0];
+    assert.ok(card, `Streak ${days} days is visible`);
+    assert.ok(card.includes(`mascot-stage-${stage}`), `Correct companion at ${days} days`);
+    assert.ok(card.includes(`<progress max="${goal}" value="${days}"`), `Correct next milestone at ${days} days`);
+  }
+  assert.ok(!response.text.includes('NaN'));
+});
 test('supports multiple independent streaks', async () => {
   await create({ title: 'A' }); await create({ title: 'B' });
   const response = await request(app).get('/api/streaks').expect(200);

@@ -1,0 +1,22 @@
+<% const mood = typeof stage !== 'undefined' ? stage : 1; %>
+<svg class="mascot mascot-stage-<%= mood %>" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+<ellipse cx="122" cy="222" rx="70" ry="9" fill="currentColor" opacity=".09"/>
+<g class="mascot-character">
+<path d="M82 194c-20 4-23 17-12 23 9 5 26 0 33-10m54-13c20 4 23 17 12 23-9 5-26 0-33-10" class="mascot-dark"/>
+<path d="M63 131c-17-10-28-6-28 4 0 14 18 27 35 29m103-33c17-10 28-6 28 4 0 14-18 27-35 29" class="mascot-skin"/>
+<path d="M77 66c-4-21-1-39 6-44 16 1 30 16 34 32m9 0c7-24 22-36 39-34 7 17 2 34-7 48" class="mascot-dark"/>
+<path d="M85 31c8 6 16 16 21 27L90 61c-5-11-7-20-5-30m68 0c-8 6-14 16-18 27l16 4c6-12 8-21 2-31" class="mascot-light"/>
+<path d="M56 112c0-38 27-62 63-62s66 24 66 62l5 48c3 33-20 54-69 54-48 0-73-20-70-53l5-49Z" class="mascot-dark"/>
+<path d="M57 111c0-34 27-56 62-56 34 0 63 22 63 56l4 40c2 32-21 51-65 51-45 0-68-19-66-51l2-40Z" class="mascot-skin"/>
+<path d="M74 83c8-9 17-13 26-14" stroke="white" stroke-opacity=".35" stroke-width="8" stroke-linecap="round"/>
+<ellipse cx="121" cy="169" rx="38" ry="28" class="mascot-light"/>
+<g class="mascot-eyes">
+<% if (mood === 0) { %><path d="M79 114c6-6 13-6 19 0m45 0c6-6 13-6 19 0" stroke="#283D32" stroke-width="5" stroke-linecap="round"/>
+<% } else { %><rect x="73" y="93" width="31" height="39" rx="15.5" fill="#FFFDF3"/><rect x="137" y="93" width="31" height="39" rx="15.5" fill="#FFFDF3"/><rect x="85" y="103" width="14" height="22" rx="7" fill="#283D32"/><rect x="142" y="103" width="14" height="22" rx="7" fill="#283D32"/><circle cx="94" cy="108" r="3" fill="white"/><circle cx="151" cy="108" r="3" fill="white"/><% } %>
+</g>
+<ellipse cx="71" cy="139" rx="12" ry="6" fill="#F59B7F" opacity=".65"/><ellipse cx="170" cy="139" rx="12" ry="6" fill="#F59B7F" opacity=".65"/>
+<path d="M108 138q12 15 25 0" stroke="#283D32" stroke-width="4" stroke-linecap="round"/>
+<% if (mood >= 3) { %><path d="m92 54-5-23 21 10 13-22 13 22 21-10-5 23" fill="#FFD365" stroke="#F3B944" stroke-width="3" stroke-linejoin="round"/><circle cx="121" cy="42" r="4" fill="#FFF8CD"/>
+<% } else if (mood >= 2) { %><path d="M100 182v20l20-7 20 7v-20" fill="#EF8C62"/><circle cx="120" cy="177" r="17" fill="#FFD365" stroke="#F6B940" stroke-width="3"/><path d="m120 166 3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1 3-7Z" fill="#FFFAE5"/>
+<% } else { %><path d="M119 185v-19m0 11c-13 0-19-5-19-13 11-1 18 3 19 13m1-7c0-11 7-17 18-16 0 10-7 16-18 16" stroke="var(--mascot-deep, #49834B)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><% } %>
+</g></svg>

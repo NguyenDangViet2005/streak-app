@@ -12,6 +12,8 @@ async function refresh() {
     }
     if (!response.ok) throw new Error();
     const data = await response.json();
+    const stage = data.days >= 100 ? 3 : data.days >= 30 ? 2 : data.days >= 7 ? 1 : 0;
+    if (!document.querySelector(`.mascot-stage-${stage}`)) { location.reload(); return; }
     document.title = `${data.title} · Streak Garden`;
     document.querySelector('#single-title').textContent = data.title;
     document.querySelector('#single-days').textContent = data.days;
